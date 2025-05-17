@@ -1,0 +1,29 @@
+name: full-ha
+
+hosts:
+  - name: node1
+    url: node1:22
+    user: ubuntu
+
+  - name: node2
+    url: node1:22
+    user: ubuntu
+
+  - name: node2
+    url: node1:22
+    user: ubuntu
+
+deployment:
+  - package: haproxy
+    hosts:
+      - node1
+      - node2
+      - node3
+
+  - cluster: keepalived
+    hosts:
+      - node1
+      - node2
+      - node3
+    config:
+      vip: 10.248.22.48

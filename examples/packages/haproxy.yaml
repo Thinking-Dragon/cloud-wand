@@ -1,0 +1,28 @@
+name: haproxy
+
+resources:
+  - file: haproxy-default
+    origin: package
+    location: haproxy-default
+
+  - file: haproxy.cfg
+    origin: deployment
+    location: haproxy.cfg
+
+create: >
+  sudo apt-get update
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y haproxy
+
+  @invoke(update)
+
+update: >
+  cp $RESOURCES/haproxy-default /etc/default/haproxy
+  cp $RESOURCES/haproxy.cfg /etc/haproxy/haproxy.cfg
+
+  sudo service haproxy restart
+
+teardown: >
+  sudo rm /etc/default/haproxy
+  sudo rm /etc/haproxy/haproxy.cfg
+
+  sudo DEBIAN_FRONTEND=noninteractive apt-get remove -y haproxy

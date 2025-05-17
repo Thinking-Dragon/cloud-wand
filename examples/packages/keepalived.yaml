@@ -1,0 +1,43 @@
+name: keepalived
+
+config:
+  - name: vip
+    type: string
+
+resources:
+  - file: init.conf
+    origin: package
+    location: init.conf
+
+  - file: primary.conf
+    origin: package
+    location: primary.conf
+
+  - file: fallback.conf
+    origin: package
+    location: fallback.conf
+
+create: >
+  sudo apt-get update
+  sudo DEBIAN_FRONT_END=noninteractive apt-get install -y keepalived
+
+  @invoke(update)
+
+update: >
+  mkdir -p /etc/init
+  sudo cp $RESOURCES/init.conf /etc/init/keepalived.conf
+
+  if [[ $NODE_ID -eq 0 ]]
+  then
+    sudo cp $RESOURCES/primary.conf /etc/keepalived/keepalived.conf
+  else
+    sudo cp $RESOURCES/fallback.conf /etc/keepalived/keepalived.conf
+  fi
+
+  sudo service keepalived restart
+
+teardown:
+  sudo rm /etc/init/keepalived.conf
+  sudo rm /etc/keepalived/keepalived.conf
+
+  sudo DEBIAN_FRONT_END=noninteractive apt-get remove -y keepalived
