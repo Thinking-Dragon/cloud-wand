@@ -27,12 +27,19 @@ pub enum DeploymentTarget {
 pub struct PackageDeploymentTarget {
     pub package: String,
     pub hosts: Vec<String>,
-    pub config: Option<HashMap<String, String>>,
+    pub config: Option<HashMap<String, ConfigValue>>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ClusterDeploymentTarget {
     pub cluster: String,
     pub hosts: Vec<String>,
-    pub config: Option<HashMap<String, String>>,
+    pub config: Option<HashMap<String, ConfigValue>>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ConfigValue {
+    String(String),
+    Unsigned32(u32),
 }

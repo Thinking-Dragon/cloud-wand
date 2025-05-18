@@ -20,10 +20,27 @@ deployment:
       - node2
       - node3
 
-  - cluster: keepalived
+  - package: keepalived
     hosts:
       - node1
+    config:
+      vip: 10.248.22.48
+      vip_interface: eno0
+      secret: a8sd46Ts
+      state: MASTER
+      priority: 100
+      virtual_router_id: 33
+      script: pgrep haproxy
+
+  - package: keepalived
+    hosts:
       - node2
       - node3
     config:
       vip: 10.248.22.48
+      vip_interface: eno0
+      secret: a8sd46Ts
+      state: BACKUP
+      priority: 200
+      virtual_router_id: 33
+      script: pgrep haproxy

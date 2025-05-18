@@ -14,12 +14,10 @@ impl HostManipulator {
     }
 
     pub fn execute(&self, command: String) -> Result<()> {
-        println!("{}", command);
         Ok(())
     }
 
     pub fn package_exists(&self, package_name: &String) -> bool {
-        println!("Checking is package {} exists", package_name);
         true
     }
 }

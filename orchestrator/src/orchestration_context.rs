@@ -28,8 +28,8 @@ impl OrchestrationContext {
                         )?
                     )
                 );
-                targets.extend(definition.deployment.clone());
             }
+            targets.extend(definition.deployment.clone());
         }
 
         let mut packages: HashMap<String, PackageDefinition> = HashMap::new();

@@ -14,9 +14,11 @@ pub async fn orchestrate_apply(deployment: Deployment) -> Result<()> {
                     if let Some(host) = ctx.hosts.get(host) {
                         if let Some(package) = ctx.packages.get(&target.package) {
                             if host.package_exists(&target.package) {
+                                println!("Creating {} on {}", target.package, host.url);
                                 host.execute(package.create.clone())?;
                             }
                             else {
+                                println!("Updating {} on {}", target.package, host.url);
                                 host.execute(package.update.clone())?;
                             }
                         }
