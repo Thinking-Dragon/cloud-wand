@@ -1,0 +1,10 @@
+[package]
+name = "cloud-wand-execution-tree"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.98"
+
+cloud-wand-host-manipulator = { path = "../host-manipulator" }
+cloud-wand-parser = { path = "../parser" }

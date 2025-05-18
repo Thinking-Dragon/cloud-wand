@@ -163,6 +163,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "cloud-wand-execution-tree"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "cloud-wand-host-manipulator",
+ "cloud-wand-parser",
+]
+
+[[package]]
 name = "cloud-wand-host-manipulator"
 version = "0.1.0"
 dependencies = [
