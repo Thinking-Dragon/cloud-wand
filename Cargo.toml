@@ -1,3 +1,3 @@
 [workspace]
 resolver = "3"
-members = ["cli", "host-manipulator", "parser"]
+members = ["cli", "orchestrator", "host-manipulator", "parser"]

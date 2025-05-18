@@ -16,21 +16,21 @@ pub struct Host {
     pub user: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeploymentTarget {
     Package(PackageDeploymentTarget),
     Cluster(ClusterDeploymentTarget),
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PackageDeploymentTarget {
     pub package: String,
     pub hosts: Vec<String>,
     pub config: Option<HashMap<String, String>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ClusterDeploymentTarget {
     pub cluster: String,
     pub hosts: Vec<String>,

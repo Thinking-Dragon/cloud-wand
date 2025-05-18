@@ -1,0 +1,11 @@
+[package]
+name = "cloud-wand-orchestrator"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.45.0", features = ["full"] }
+anyhow = "1.0.98"
+
+cloud-wand-host-manipulator = { path = "../host-manipulator" }
+cloud-wand-parser = { path = "../parser" }

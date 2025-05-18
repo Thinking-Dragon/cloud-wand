@@ -9,7 +9,7 @@ hosts:
     url: node1:22
     user: ubuntu
 
-  - name: node2
+  - name: node3
     url: node1:22
     user: ubuntu
 

@@ -2,6 +2,7 @@ use std::path::PathBuf;
 
 use anyhow::Result;
 use clap::Parser;
+use cloud_wand_orchestrator::orchestrate_apply::orchestrate_apply;
 use cloud_wand_parser::deployment::Deployment;
 
 #[derive(Debug, Parser)]
@@ -17,8 +18,5 @@ pub fn apply_command(args: ApplyArgs) -> Result<()> {
     };
 
     let deployment: Deployment = Deployment::from_directory(deployment_path)?;
-
-    println!("{:#?}", deployment);
-
-    Ok(())
+    orchestrate_apply(deployment)
 }
